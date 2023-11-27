@@ -3,9 +3,9 @@
   <!-- Tilføj nye tasks, til backlog-->
   <br>
   <div>
-    <input v-model="newTodo" type="text" placeholder="Task Titel" /><br/>
+    <input v-model="newTask" type="text" placeholder="Task Titel" /><br/>
     <input v-model="newTodoDescription" type="text" placeholder="Task Beskrivelse" /><br/><br/>
-    <button @click="addTodo">Tilføj Task</button>
+    <button @click="addTask">Tilføj Task</button>
   </div>
   <br>
 
@@ -142,23 +142,15 @@ export default {
     };
   },
   methods: {
-    async saveToFile() {
-      const content = JSON.stringify({
-        backlogArr: this.backlogArr,
-        todoArr: this.todoArr,
-        inProgressArr: this.inProgressArr,
-        finishedArr: this.finishedArr,
-      });
-    },
-    addTodo() {
-      if (this.newTodo.trim() !== "") {
+    addTask() {
+      if (this.newTask.trim() !== "") {
         const newTask = {
           id: this.backlogArr.length + 1,
-          navn: this.newTodo.trim(),
+          navn: this.newTask.trim(),
           beskrivelse: this.newTodoDescription.trim(),
         };
         this.backlogArr.push(newTask);
-        this.newTodo = ""; 
+        this.newTask = ""; 
         this.newTodoDescription = "";
       }
     },
